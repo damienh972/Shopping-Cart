@@ -1,1 +1,1 @@
-<center><h1>Marketplace using React context and Typescript</h1></center>
+<h1><center>Marketplace using React context and Typescript</center></h1>

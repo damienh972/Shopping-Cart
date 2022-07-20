@@ -4,7 +4,7 @@ enum ActionsType {
   ADD = "ADD",
   DELETE = "DELETE",
 }
-interface Actions {
+export interface Actions {
   type: ActionsType;
   payload: ProductType;
 }

@@ -3,11 +3,10 @@ import { faker } from "@faker-js/faker";
 import { cartReducer } from "./Reducer";
 import { ProductType } from "../models";
 
-const ShoppingCart: React.Context<{}> = createContext({});
+const ShoppingCart: React.Context<any> =createContext({});
 
+const Context: React.FC<{ children: JSX.Element }> = (props) => {
 
-
-const Context: React.FC<{ children:JSX.Element }> = (props) => {
   const products: ProductType[] = [...Array(20)].map(() => ({
     id: faker.datatype.uuid(),
     name: faker.commerce.productName(),
@@ -19,12 +18,12 @@ const Context: React.FC<{ children:JSX.Element }> = (props) => {
   }));
 
   const [state, dispatch] = useReducer<any>(cartReducer, {
-    products,
+    products:products,
     cart: [],
   });
 
   return (
-    <ShoppingCart.Provider value={{ state, dispatch }}>
+    <ShoppingCart.Provider value={{state, dispatch}}>
       {props.children}
     </ShoppingCart.Provider>
   );
