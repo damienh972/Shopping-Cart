@@ -1,5 +1,4 @@
-import { useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   Navbar,
   Container,
@@ -12,14 +11,17 @@ import {
 import { FaShoppingCart, FaEthereum } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
 import { ShoppingCartState } from "../context/Context";
+import { Location } from "../models";
+
+
+
 
 const Header: React.FC = () => {
-  const menu = useRef(null);
+  const url:Location = useLocation();
   const { state: { cart }, dispatch } = ShoppingCartState();
 
   const handleMenu = () => {
-    console.log(menu.current!)
-    // menu.current!.show = false;
+    document.getElementById("drop_menu")!.classList.remove("show");
   }
 
   return (
@@ -39,8 +41,8 @@ const Header: React.FC = () => {
                 <Badge bg="success">{cart.length}</Badge>
               </Dropdown.Toggle>
               <Dropdown.Menu
+                id="drop_menu"
                 className="drop_menu"
-                ref={menu}
                 align="start"
                 style={{ minWidth: 370, padding: cart.length === 0 ? 20 : 0 }}
               >
@@ -71,16 +73,20 @@ const Header: React.FC = () => {
                         />
                       </span>
                     ))}
-                    <Link to="/cart">
-                      <Button onClick={() => handleMenu()}style={{ width: "95%", margin: "10px" }}>
-                        Go to Cart
-                      </Button>
-                    </Link>
+                    {url.pathname !== "/cart" && (
+                      <Link to="/cart">
+                        <Button
+                          onClick={() => handleMenu()}
+                          style={{ width: "95%", margin: "10px" }}
+                        >
+                          Go to Cart
+                        </Button>
+                      </Link>
+                    )}
                   </>
                 ) : (
                   <span style={{ padding: 10 }}>Cart is empty</span>
                 )}
-              
               </Dropdown.Menu>
             </Dropdown>
           </Nav>

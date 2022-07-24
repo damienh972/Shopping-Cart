@@ -1,11 +1,11 @@
 import { createContext, useContext, useReducer } from "react";
 import { faker } from "@faker-js/faker";
-import { cartReducer } from "./Reducer";
-import { ProductType, State, CartReducer, Actions } from "../models";
+import { cartReducer, filterReducer } from "./Reducer";
+import { ProductType, CartState, CartReducer, CartActions, FilterReducer } from "../models";
 
 interface FullState {
-  state: State;
-  dispatch: React.Dispatch<Actions>;
+  state: CartState;
+  dispatch: React.Dispatch<CartActions>;
 }
 
 const ShoppingCart: React.Context<any> = createContext({});
@@ -18,7 +18,7 @@ const Context: React.FC<{ children: JSX.Element }> = (props) => {
     name: faker.commerce.productName(),
     price: faker.commerce.price(1, 10),
     image: faker.image.abstract(1000, 1000, true),
-    inStock: faker.helpers.arrayElement([0, 3, 5, 6, 7]),
+    inStock: faker.helpers.arrayElement([0, 5]),
     fastDelivery: faker.datatype.boolean(),
     rating: faker.helpers.arrayElement([1, 2, 3, 4, 5]),
   }));
@@ -26,6 +26,13 @@ const Context: React.FC<{ children: JSX.Element }> = (props) => {
   const [state, dispatch] = useReducer<CartReducer>(cartReducer, {
     products,
     cart: [],
+  });
+
+  const [filterState, filterDispatch] = useReducer<FilterReducer>(filterReducer, {
+    byStock: false,
+    byFastDelivery: false,
+    byRating: 0,
+    searchQuery: ""
   });
 
   return (

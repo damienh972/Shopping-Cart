@@ -80,4 +80,11 @@
   width: 250px;
   margin: 10px;
 }
-
+/* ***** Cart.jsx ***** */
+.summary {
+  width: 30%;
+}
+.row {
+  align-items: center;
+  justify-content: space-between;
+}

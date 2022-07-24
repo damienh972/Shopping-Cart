@@ -5,11 +5,7 @@ import Filters from "../Filters";
 import "../styles.css";
 
 const Home: React.FC = () => {
-
-  console.log(ShoppingCartState())
-
   const { state:{products}, } = ShoppingCartState();
-  console.log(products);
   
   return (
     <div className="home">

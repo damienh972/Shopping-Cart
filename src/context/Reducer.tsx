@@ -1,19 +1,6 @@
-import { ProductType, State, Actions } from "../models";
+import { ProductType, CartState, CartActions, FilterState, FilterActions } from "../models";
 
-export type ActionMap<M extends { [index: string]: any }> = {
-  [Key in keyof M]: M[Key] extends undefined
-    ? {
-        type: Key;
-      }
-    : {
-        type: Key;
-        payload: M[Key];
-      };
-};
-
-export type ProductActions = ActionMap<ProductType>[keyof ActionMap<ProductType>];
-
-export const cartReducer = (state: State, action: Actions) => {
+export const cartReducer = (state: CartState, action: CartActions) => {
   switch (action.type) {
     case "ADD_TO_CART":
       return {
@@ -23,9 +10,27 @@ export const cartReducer = (state: State, action: Actions) => {
     case "REMOVE_FROM_CART":
       return {
         ...state,
-        cart: state.cart.filter((c: { id: string; }) => c.id !== action.payload.id),
+        cart: state.cart.filter(
+          (c: ProductType) => c.id !== action.payload.id
+        ),
+      };
+    case "CHANGE_CART_QUANTITY":
+      return {
+        ...state,
+        cart: state.cart.filter((c: ProductType) =>
+          c.id === action.payload.id ? (c.qty = action.payload.qty) : c.qty
+        ),
       };
     default:
       return state;
   }
 };
+
+export const filterReducer = (state: FilterState, action: FilterActions) => {
+  switch (action.type) {
+
+    
+    default:
+      return state;
+  }
+}

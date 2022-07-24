@@ -4,7 +4,7 @@ import Rating from "./Rating";
 import "./styles.css";
 
 const Filters = () => {
-  const [rate, setRate] = useState<React.SetStateAction<number>>(4);
+  const [rate, setRate] = useState<React.SetStateAction<number | undefined>>(4);
   return (
     <div className="filters">
       <span className="title">Filter Products</span>
