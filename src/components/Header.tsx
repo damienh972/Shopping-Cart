@@ -18,7 +18,7 @@ const Header: React.FC = () => {
   const { state: { cart }, dispatch } = ShoppingCartState();
 
   const handleMenu = () => {
-    console.log(menu.current)
+    console.log(menu.current!)
     // menu.current!.show = false;
   }
 
@@ -80,6 +80,7 @@ const Header: React.FC = () => {
                 ) : (
                   <span style={{ padding: 10 }}>Cart is empty</span>
                 )}
+              
               </Dropdown.Menu>
             </Dropdown>
           </Nav>
