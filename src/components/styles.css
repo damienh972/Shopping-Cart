@@ -1,0 +1,83 @@
+/* ***** Header.tsx ***** */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.search {
+  width: 50%;
+}
+
+.badge {
+  top: 10px !important;
+  left: -5px !important;
+  background-color: transparent !important;
+}
+
+.drop_menu {
+  padding: 0;
+  right: 0 !important;
+  left: inherit !important;
+}
+
+.cartItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: solid 1px #eee;
+}
+
+.cartItem__img {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
+.cartItem__detail {
+  display: flex;
+  flex: 1;
+  padding: 0 20px;
+  flex-direction: column;
+}
+/* ***** Home.jsx ***** */
+.home {
+  display: flex;
+}
+/* ***** Filters.jsx ***** */
+.filters {
+  position: sticky;
+  top: 112px;
+  background-color: #343a40;
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  width:20%;
+  margin: 10px;
+  height: 86vh;
+}
+
+.filters > span {
+  padding-bottom: 20px;
+}
+
+.title {
+  font-size:30px;
+}
+/* ***** SingleProduct.jsx ***** */
+.productContainer {
+  display: flex;
+  width: 78%;
+  padding: 20px;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.product {
+  width: 250px;
+  margin: 10px;
+}
+
