@@ -9,6 +9,13 @@ export interface CartActions {
   payload: ProductType;
 };
 
+export interface CartContext {
+  state: CartState;
+  filterState: FilterState;
+  dispatch: React.Dispatch<CartActions>;
+  filterDispatch: React.Dispatch<FilterActions>;
+}
+
 export interface CartReducer {
   (state: CartState, action: CartActions):{
     cart: (ProductType | {
@@ -26,6 +33,7 @@ export interface CartReducer {
 };
 ///// Filter types
 export interface FilterState {
+  sort?: string;
   byStock: boolean;
   byFastDelivery: boolean;
   byRating: number;
@@ -33,21 +41,25 @@ export interface FilterState {
 }
 
 export interface FilterActions {
-  type: "ADD_TO_CART" | "REMOVE_FROM_CART" | "CHANGE_CART_QUANTITY";
-  payload: ProductType;
+  type:
+    | "SORT_BY_PRICE"
+    | "FILTER_BY_STOCK"
+    | "FILTER_BY_DELIVERY"
+    | "FILTER_BY_RATING"
+    | "FILTER_BY_SEARCH"
+    | "CLEAR_FILTERS";
+  payload?: any;
 };
 
 export interface FilterReducer {
-  (state: FilterState, action: FilterActions):{
+  (state: FilterState, action: FilterActions): {
+    sort?: string;
     byStock: boolean;
     byFastDelivery: boolean;
     byRating: number;
     searchQuery: string;
   }
 };
-
-
-
 ///// general types
 export interface Location {
   hash: string;
@@ -67,3 +79,7 @@ export interface ProductType {
   fastDelivery?: boolean;
   rating?: number;
 };
+
+export interface AllContext {
+
+}

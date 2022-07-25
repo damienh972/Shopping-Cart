@@ -52,11 +52,11 @@
   top: 112px;
   background-color: #343a40;
   color: white;
-  padding: 20px;
+  padding: 20px ;
   display: flex;
   flex-direction: column;
   width:20%;
-  margin: 10px;
+  margin: 0 0 0 10px;
   height: 86vh;
 }
 
@@ -67,17 +67,19 @@
 .title {
   font-size:30px;
 }
+
 /* ***** SingleProduct.jsx ***** */
 .productContainer {
   display: flex;
   width: 78%;
-  padding: 20px;
+  padding: 20px 10px 10px 0;
   flex-wrap: wrap;
-  justify-content: space-around;
+  /* justify-content: space-around; */
 }
 
 .product {
-  width: 250px;
+  width: 25%;
+  min-width: 20%;
   margin: 10px;
 }
 /* ***** Cart.jsx ***** */
@@ -87,4 +89,37 @@
 .row {
   align-items: center;
   justify-content: space-between;
+}
+
+@media (max-width: 1200px) {
+   .filters {
+    width: 30%;
+    padding: 10px;
+    margin: 5px;
+  }
+}
+
+@media (max-width: 768px) {
+  .filters {
+    width: 30%;
+    padding: 10px;
+    margin: 5px;
+  }
+
+  .filters > span {
+    font-size: 10px;
+  }
+
+  .title {
+    font-size: 18px !important;
+  }
+
+  .productContainer {
+    width: 58%;
+    padding: 0;
+  }
+
+  .products {
+    width: 100%;
+  }
 }

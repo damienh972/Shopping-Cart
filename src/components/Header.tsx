@@ -18,7 +18,7 @@ import { Location } from "../models";
 
 const Header: React.FC = () => {
   const url:Location = useLocation();
-  const { state: { cart }, dispatch } = ShoppingCartState();
+  const { state: { cart }, dispatch, filterDispatch } = ShoppingCartState();
 
   const handleMenu = () => {
     document.getElementById("drop_menu")!.classList.remove("show");
@@ -32,7 +32,16 @@ const Header: React.FC = () => {
             <Link to="/">Marketplace</Link>
           </Navbar.Brand>
           <Navbar.Text className="search">
-            <FormControl className="m-auto" placeholder="Search a product" />
+            <FormControl
+              className="m-auto"
+              placeholder="Search a product"
+              onChange={(e) =>
+                filterDispatch({
+                  type: "FILTER_BY_SEARCH",
+                  payload: e.target.value
+                })
+              }
+            />
           </Navbar.Text>
           <Nav>
             <Dropdown align="end">

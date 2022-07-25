@@ -1,12 +1,12 @@
 import { createContext, useContext, useReducer } from "react";
 import { faker } from "@faker-js/faker";
 import { cartReducer, filterReducer } from "./Reducer";
-import { ProductType, CartState, CartReducer, CartActions, FilterReducer } from "../models";
-
-interface FullState {
-  state: CartState;
-  dispatch: React.Dispatch<CartActions>;
-}
+import {
+  ProductType,
+  CartContext,
+  CartReducer,
+  FilterReducer,
+} from "../models";
 
 const ShoppingCart: React.Context<any> = createContext({});
 faker.seed(99);
@@ -29,6 +29,7 @@ const Context: React.FC<{ children: JSX.Element }> = (props) => {
   });
 
   const [filterState, filterDispatch] = useReducer<FilterReducer>(filterReducer, {
+    sort: "lowToHigh",
     byStock: false,
     byFastDelivery: false,
     byRating: 0,
@@ -36,7 +37,7 @@ const Context: React.FC<{ children: JSX.Element }> = (props) => {
   });
 
   return (
-    <ShoppingCart.Provider value={{state, dispatch}}>
+    <ShoppingCart.Provider value={{state, dispatch, filterState, filterDispatch}}>
       {props.children}
     </ShoppingCart.Provider>
   );
@@ -44,6 +45,8 @@ const Context: React.FC<{ children: JSX.Element }> = (props) => {
 
 export default Context;
 
+
+
 export const ShoppingCartState = () => {
-  return useContext<FullState>(ShoppingCart);
+  return useContext<CartContext>(ShoppingCart);
 };
