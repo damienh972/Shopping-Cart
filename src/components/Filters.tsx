@@ -1,6 +1,6 @@
-import { useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import { ShoppingCartState } from "../context/Context";
+import { GoEye } from "react-icons/go";
 import Rating from "./Rating";
 import "./styles.css";
 
@@ -12,11 +12,22 @@ const Filters = () => {
     byRating,
   }, filterDispatch } = ShoppingCartState();
 
-  console.log(sort, byStock, byFastDelivery, byRating);
+  console.log(sort, byStock, byFastDelivery, byRating, );
 
   return (
     <div className="filters">
-      <span className="title">Filter Products</span>
+      <span className="title">
+        Filter
+        <GoEye
+          fontSize="25px"
+          style={{ cursor: "pointer", marginLeft: "100px" }}
+          onClick={() =>
+            filterDispatch({
+              type: "TOGGLE_FILTERS",
+            })
+          }
+        />
+      </span>
       <span>
         <Form.Check
           inline
@@ -93,7 +104,6 @@ const Filters = () => {
         />
       </span>
       <Button
-        variant="light"
         onClick={() =>
           filterDispatch({
             type: "CLEAR_FILTERS",

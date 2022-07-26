@@ -2,12 +2,14 @@ import { ShoppingCartState } from "../../context/Context";
 import { ProductType } from "../../models";
 import SingleProduct from "../SingleProduct";
 import Filters from "../Filters";
+import { RiEyeCloseFill } from "react-icons/ri";
 import "../styles.css";
 
 const Home: React.FC = () => {
   const {
     state: { products },
-    filterState: { sort, byStock, byFastDelivery, byRating, searchQuery },
+    filterState: { sort, byStock, byFastDelivery, byRating, searchQuery, show },
+    filterDispatch
   } = ShoppingCartState();
 
   const transformProducts = () => {
@@ -52,7 +54,22 @@ const Home: React.FC = () => {
 
   return (
     <div className="home">
-      <Filters />
+      {show ? (
+        <Filters />
+      ) : (
+        <div className="filters closed">
+          <RiEyeCloseFill
+            fontSize="30px"
+            style={{ cursor: "pointer", marginLeft: "15px" }}
+            onClick={() =>
+              filterDispatch({
+                type: "TOGGLE_FILTERS",
+              })
+            }
+          />
+        </div>
+      )}
+
       <div className="productContainer">
         {transformProducts().map((prod: ProductType) => (
           <SingleProduct prod={prod} key={prod.id} />

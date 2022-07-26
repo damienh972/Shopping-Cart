@@ -33,7 +33,8 @@ const Context: React.FC<{ children: JSX.Element }> = (props) => {
     byStock: false,
     byFastDelivery: false,
     byRating: 0,
-    searchQuery: ""
+    searchQuery: "",
+    show: true
   });
 
   return (

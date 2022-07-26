@@ -60,6 +60,12 @@ export const filterReducer = (state: FilterState, action: FilterActions) => {
         byFastDelivery: false,
         byRating: 0,
         searchQuery: "",
+        show: true,
+      };
+    case "TOGGLE_FILTERS":
+      return {
+        ...state,
+        show: !state.show,
       };
 
     default:

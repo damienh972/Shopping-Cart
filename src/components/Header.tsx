@@ -27,7 +27,7 @@ const Header: React.FC = () => {
   return (
     <header className="header">
       <Navbar bg="dark" variant="dark" style={{ height: 80 }}>
-        <Container fluid>
+        <Container className="header__container" fluid>
           <Navbar.Brand>
             <Link to="/">Marketplace</Link>
           </Navbar.Brand>

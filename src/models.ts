@@ -38,6 +38,7 @@ export interface FilterState {
   byFastDelivery: boolean;
   byRating: number;
   searchQuery: string;
+  show: boolean;
 }
 
 export interface FilterActions {
@@ -47,7 +48,8 @@ export interface FilterActions {
     | "FILTER_BY_DELIVERY"
     | "FILTER_BY_RATING"
     | "FILTER_BY_SEARCH"
-    | "CLEAR_FILTERS";
+    | "CLEAR_FILTERS"
+    | "TOGGLE_FILTERS";
   payload?: any;
 };
 
@@ -58,6 +60,7 @@ export interface FilterReducer {
     byFastDelivery: boolean;
     byRating: number;
     searchQuery: string;
+    show: boolean;
   }
 };
 ///// general types
